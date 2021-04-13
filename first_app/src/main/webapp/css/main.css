@@ -1,0 +1,162 @@
+@charset "UTF-8";
+
+.login-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-box{
+  /* display: flex;
+  text-align: center;
+  justify-content: center;
+  */
+  text-align: center;
+}
+
+.login-form{
+  margin-top: 20px;
+}
+
+.header-box{
+  text-align: right;
+  margin: 5% 10%
+}
+
+.button-box{
+  display: flex;
+  justify-content: center;
+}
+
+.buttonsize-box{
+  width: 100%;
+}
+
+.button-size{
+  width: 80%;
+  text-align: left; 
+  margin-bottom: 10px;
+}
+
+.button-size1{
+  width: 700px;
+  text-align: left; 
+  margin-bottom: 10px;
+}
+
+.top-magin{
+  margin-top: 0px;
+}
+
+.center{
+  text-align: right;
+  margin: 5% 10%;
+}
+
+.list-center{
+  text-align: center;
+}
+
+
+.test-box{
+  padding: 5% 15% 0;
+}
+
+.test-user{
+  list-style: none;
+}
+
+.test-user li{
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+.test-day{
+  text-align: right;
+  margin-top: 80px;
+}
+
+
+.edit-numder{
+  margin-left: 15%;
+}
+
+
+
+
+/* 共通 */
+.b-size{
+  width: 8%;
+}
+
+.magin-l10{
+  margin-left: 10px;
+}
+
+.tyuou{
+  display: flex;
+  justify-content:center;
+  text-align: right;
+  margin-bottom: 70px;
+}
+
+.top-center{
+  display: flex;
+  justify-content:center;
+  text-align: right;
+}
+
+.list-box{
+  display: block;
+}
+
+.question-box{
+  width: 70%;
+}
+
+
+.text-size{
+  width: 90%;
+  /* margin-top: 10px; */
+}
+
+.text-size84{
+  width: 84%;
+}
+
+.text-size-h250{
+  height: 250px;
+}
+
+.text-size-h170{
+  height: 170px;
+}
+
+.syouryaku{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.number{
+  border: 1px solid black;
+  padding: 0 3px;
+}
+
+.valign{
+  vertical-align : top;
+}
+
+p{
+  margin: 2px;
+}
+
+.maginbottom{
+  margin-bottom: 20px;
+}
+
+
+.title1{
+  font-size: 30px;
+  text-align: center;
+}

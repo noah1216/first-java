@@ -4,7 +4,7 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8" />
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" type="text/css" href="css/main.css" >
 <title>タイトル</title>
 <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -14,34 +14,39 @@
 <body>
 <main>
   <div class="header-box">
-    <input type="submit" value="top" class="b-size magin-l10">
-    <input type="submit" value="logout" class="b-size magin-l10">
+          <a href="top.jsp">
+	        <button type="button" class="b-size magin-l10">top</button>
+	      <a href="logoutServlet">
+	        <button type="button" class="b-size magin-l10">logout</button>
+	      </a>
   </div>
 
+<form action="newServlet">
   <div class="button-box">
     <div class="buttonsize-box">
       <div class="tyuou">
         <div class="question-box">
           <label class="valign">問題:</label>
-          <textarea class="text-size text-size-h250" rows="10" cols="60">ここに記入してください</textarea>
+          <textarea class="text-size text-size-h250" rows="10" cols="60" name="question">ここに記入してください</textarea>
           <p>
             <label>答え:</label>
-            <input type="text" name="example" value="選択肢" class="text-size84">
-            <input type="button" value="削除" >
-          </p>
-          <p>
-            <input type="text" name="example" value="選択肢" class="text-size84">
+            <input type="text" name="answer" value="選択肢" class="text-size84">
             <input type="button" value="削除" >
           </p>
         </div>
       </div>
       <div class="center">
-        <input type="button" value="確認" >
-        <input type="button" value="戻る" >
-        <input type="button" value="追加" >
+        <input type="submit" value="確認" >
+         <a href="listServlet">
+	        <button type="button" >戻る</button>
+	      </a>
+         <a href="listServlet">
+	        <button type="button" >追加</button>
+	     </a>
       </div>
     </div>
   </div>
+</form>
 </main>
 </body>
 </html>

@@ -39,7 +39,6 @@ for (int i =0; i < questionList.size(); i++) {
     if (question == null) {
         continue;
         /* なんでquestion == nullなの */        		
-
     }
 %>
  <div class="button-box">
@@ -49,7 +48,7 @@ for (int i =0; i < questionList.size(); i++) {
           <p>
             <label>問題:</label>
             <label><%= question.getId() %></label>
-            <input type="text" name="example" class="text-size" value="<%= question.getQuestion() %>">
+            <input type="text" name="question" class="text-size" value="<%= question.getQuestion() %>">
           </p>
            <% 
 			List<answersBean> answerList = (List<answersBean>)request.getAttribute("list2");
@@ -65,12 +64,17 @@ for (int i =0; i < questionList.size(); i++) {
 			%>
           <p>
             <label>答え1:</label>
-            <input type="text" name="example" value="<%= answer.getAnswer() %>" class="text-size">
+            <input type="text" name="answer" value="<%= answer.getAnswer() %>" class="text-size">
           </p>
           <% } %>
         <div>
-          <input type="button" value="編集" >
-          <input type="button" value="削除" >
+		<form action="deleteSarvlet">
+          <input type="hidden" name="question_id" value="<%= question.getId() %>">
+	       <button type="submit">削除</button>
+	    </form>
+          <a href="deleteSarvlet">
+	        <button type="button">編集</button>
+	      </a>
         </div>
       </div>
     </div>

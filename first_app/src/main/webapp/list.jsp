@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="Bean.questionsBean"%>
+<%@ page import="Bean.answersBean"%>
 <%@ page import="java.util.List"%>
 <!DOCTYPE html>
 <html lang="ja">
@@ -31,98 +32,50 @@
 	</a>
   </div>
 
-  <div class="button-box">
-    <div class="buttonsize-box">
-      <div class="tyuou">
-        <div class="question-box">
-          <p>
-            <label>問題:</label>
-            <label>1</label>
-            <input type="text" name="example" value="選択肢" class="text-size">
-          </p>
-          <p>
-            <label>答え1:</label>
-            <input type="text" name="example" value="選択肢" class="text-size">
-          </p>
-          <p>
-            <label>答え2:</label>
-            <input type="text" name="example" value="選択肢" class="text-size">
-          </p>
-        </div>
+  <% 
+List<questionsBean> questionList = (List<questionsBean>)request.getAttribute("list");
+for (int i =0; i < questionList.size(); i++) {
+    questionsBean question = questionList.get(i);
+    if (question == null) {
+        continue;
+        /* なんでquestion == nullなの */        		
 
-        <div>
-          <input type="button" value="編集" >
-          <input type="button" value="削除" >
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="button-box">
-    <div class="buttonsize-box">
-      <div class="tyuou">
-        <div class="question-box">
-          <p>
-            <label>問題:</label>
-            <label>1</label>
-            <input type="text" name="example" value="選択肢" class="text-size">
-          </p>
-          <p>
-            <label>答え1:</label>
-            <input type="text" name="example" value="選択肢" class="text-size">
-          </p>
-          <p>
-            <label>答え2:</label>
-            <input type="text" name="example" value="選択肢" class="text-size">
-          </p>
-        </div>
-
-        <div>
-          <input type="button" value="編集" >
-          <input type="button" value="削除" >
-        </div>
-      </div>
-    </div>
-  </div>
-
+    }
+%>
  <div class="button-box">
     <div class="buttonsize-box">
       <div class="tyuou">
         <div class="question-box">
           <p>
             <label>問題:</label>
-            <label>1</label>
-            <input type="text" name="example" value="選択肢" class="text-size">
+            <label><%= question.getId() %></label>
+            <input type="text" name="example" class="text-size" value="<%= question.getQuestion() %>">
           </p>
+           <% 
+			List<answersBean> answerList = (List<answersBean>)request.getAttribute("list2");
+			for (int c =0; c < answerList.size(); c++) {
+				answersBean answer = answerList.get(c);
+				int id1 = question.getId();
+				int id2 = answer.getQuestionsId();
+			    if (id1 != id2) {
+			        continue;
+			        /* なんでquestion == nullなの */        		
+			
+			    }
+			%>
           <p>
             <label>答え1:</label>
-            <input type="text" name="example" value="選択肢" class="text-size">
+            <input type="text" name="example" value="<%= answer.getAnswer() %>" class="text-size">
           </p>
-          <p>
-            <label>答え2:</label>
-            <input type="text" name="example" value="選択肢" class="text-size">
-          </p>
-        </div>
-
+          <% } %>
         <div>
           <input type="button" value="編集" >
           <input type="button" value="削除" >
         </div>
       </div>
     </div>
-    <%
-    
-List<questionsBean> questionList = (List<questionsBean>)request.getAttribute("list");
-for (int i =0; i < questionList.size(); i++) {
-    questionsBean question = questionList.get(i);
-    if (question == null) {
-        continue;
-    }
-%>
-<input type="text" name="id" value="<%= question.getId() %>"><br />
-<input type="text" name="question" value="<%= question.getQuestion() %>">
-<% } %>
   </div>
+<% } %>
 
 
  

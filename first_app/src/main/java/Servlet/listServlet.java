@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Bean.answersBean;
 import Bean.questionsBean;
+import dao.answersDao;
 import dao.questionsDao;
 /**
  * Servlet implementation class listServlet
@@ -37,6 +39,11 @@ public class listServlet extends HttpServlet {
 			  questionsDao dao = new questionsDao();
 			  List<questionsBean> list = dao.findAll();
 			  request.setAttribute("list", list);
+			  
+			  answersDao dao2 = new answersDao();
+			  List<answersBean> list2 = dao2.findAll();
+			  request.setAttribute("list2", list2);
+			  
 			  RequestDispatcher rd = request.getRequestDispatcher("list.jsp");
 			  rd.forward(request, response);
 			} catch(SQLException e) {
@@ -47,8 +54,6 @@ public class listServlet extends HttpServlet {
 			  RequestDispatcher rd = request.getRequestDispatcher("top.jsp");
 			  rd.forward(request, response);
 			}
-		
-		getServletContext().getRequestDispatcher("/list.jsp").forward(request, response);
 	}
 
 	/**

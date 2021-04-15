@@ -43,6 +43,7 @@ public class questionsDao extends ConnectionDao{
 	    }
 	  }
 	
+//	全てデータを取得
 	public List<questionsBean> findAll() throws Exception {
 		if (con == null) {
 			setConnection();
@@ -50,7 +51,7 @@ public class questionsDao extends ConnectionDao{
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT id, question FROM questions WHERE deleteflag = 0";
+			String sql = "SELECT id, question FROM questions";
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
 			/** SQL 実行 **/

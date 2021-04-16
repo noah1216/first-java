@@ -1,8 +1,6 @@
 package Servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Bean.questionsBean;
 import dao.questionsDao;
 
 /**
@@ -41,10 +38,24 @@ public class deleteSarvlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		// TODO Auto-generated method stu
+		try {
+			request.setCharacterEncoding("UTF-8");
+			String id = request.getParameter("questionId");
+			System.out.println(id);
+			questionsDao questiondao = new questionsDao();
+			questiondao.delete(id);
+
+			  RequestDispatcher rd = request.getRequestDispatcher("list.jsp");
+			  rd.forward(request, response);
+		}catch(Exception e) {
+			  RequestDispatcher rd = request.getRequestDispatcher("top.jsp");
+			  rd.forward(request, response);
+			}
 	}
 	
+	
+//確認画面
 	private void common(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
@@ -52,20 +63,17 @@ public class deleteSarvlet extends HttpServlet {
 		request.setCharacterEncoding("Shift_JIS");
 		
 		try {
-			  questionsDao dao = new questionsDao();
-			  List<questionsBean> list = dao.findAll();
-			  request.setAttribute("list", list);
-			  System.out.println(list);
 			  
-			  String questionID=request.getParameter("question_id");
-			  request.setAttribute("questionID",questionID);
-			  System.out.println(questionID);
+			  String question = (String)request.getParameter("question");
+			  request.setAttribute("question",question);
+			  
+			  String answer = (String)request.getParameter("answer");
+			  request.setAttribute("answer",answer);
+			  
+			  String questionId = (String)request.getParameter("questionId");
+			  request.setAttribute("questionId",questionId);
 			  
 			  RequestDispatcher rd = request.getRequestDispatcher("delete.jsp");
-			  rd.forward(request, response);
-			} catch(SQLException e) {
-			  //トップ画面にリダイレクト
-			  RequestDispatcher rd = request.getRequestDispatcher("top.jsp");
 			  rd.forward(request, response);
 			} catch(Exception e) {
 			  RequestDispatcher rd = request.getRequestDispatcher("top.jsp");

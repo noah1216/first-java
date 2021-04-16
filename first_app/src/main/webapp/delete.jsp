@@ -20,36 +20,35 @@
     <input type="submit" value="top" class="b-size magin-l10">
     <input type="submit" value="logout" class="b-size magin-l10">
   </div>
-  <% 
+<%--   <% 
 	List<questionsBean> questionList = (List<questionsBean>)request.getAttribute("list");
     String questionID = (String)request.getAttribute("questionID");
     System.out.println(questionID);
-	int i = Integer.parseInt(questionID); 
-	System.out.println(i);
-    /* questionsBean question = questionList.get(i);  */
-%>
+	int i = Integer.parseInt(questionID) - 1; 
+    questionsBean question = questionList.get(i); 
+    System.out.println(question);
+%> --%>
   <div class="button-box">
     <div class="buttonsize-box">
       <div class="tyuou">
         <div class="questionーbox">
           <label class="valign">問題:</label>
-          <textarea class="text-size text-size-h250" rows="10" cols="60"></textarea>
+          <textarea name="question" class="text-size text-size-h250" rows="10" cols="60"><%=request.getAttribute("question")%></textarea>
           <p>
             <label>答え:</label>
-            <input type="text" name="example" value="選択肢" class="text-size">
-          </p>
-          <p>
-            <input type="text" name="example" value="選択肢" class="text-size">
-          </p>
-          <p>
-            <input type="text" name="example" value="選択肢" class="text-size">
+            <input type="text" name="answer" value="<%= request.getAttribute("answer") %>" class="text-size">
           </p>
         </div>
       </div>
+      <form action="deleteSarvlet" method="post">
       <div class="center">
-        <input type="button" value="編集" >
-        <input type="button" value="削除" >
+        <input type="hidden" name="questionId" value="<%= request.getAttribute("questionId") %>"> 
+          <a href="listServlet.jsp">
+	        <button type="button">戻る</button>
+	      </a>
+        <input type="submit" value="削除" >
       </div>
+      </form>
     </div>
   </div>
 </main>

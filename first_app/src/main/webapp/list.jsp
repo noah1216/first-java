@@ -37,10 +37,10 @@ List<questionsBean> questionList = (List<questionsBean>)request.getAttribute("li
 for (int i =0; i < questionList.size(); i++) {
     questionsBean question = questionList.get(i);
     if (question == null) {
-        continue;
-        /* なんでquestion == nullなの */        		
+        continue;    		
     }
 %>
+<form action="deleteSarvlet">
  <div class="button-box">
     <div class="buttonsize-box">
       <div class="tyuou">
@@ -58,8 +58,6 @@ for (int i =0; i < questionList.size(); i++) {
 				int id2 = answer.getQuestionsId();
 			    if (id1 != id2) {
 			        continue;
-			        /* なんでquestion == nullなの */        		
-			
 			    }
 			%>
           <p>
@@ -68,10 +66,8 @@ for (int i =0; i < questionList.size(); i++) {
           </p>
           <% } %>
         <div>
-		<form action="deleteSarvlet">
-          <input type="hidden" name="question_id" value="<%= question.getId() %>">
+           <input type="hidden" name="questionId" value="<%= question.getId() %>"> 
 	       <button type="submit">削除</button>
-	    </form>
           <a href="deleteSarvlet">
 	        <button type="button">編集</button>
 	      </a>
@@ -79,6 +75,7 @@ for (int i =0; i < questionList.size(); i++) {
       </div>
     </div>
   </div>
+  </form>
 <% } %>
 
 

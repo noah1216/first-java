@@ -45,50 +45,41 @@ public class questionsDao extends ConnectionDao{
 	
 	
 //	SELECT　*　FROM　myTable　WHERE　ID = 10;　
+//	delete from questions where id = questionID;
 	
-////	一件のデータを取得
-//	public List<questionsBean> questionID(String questionid) throws Exception {
-//		if (con == null) {
-//			setConnection();
-//		}
-//		PreparedStatement st = null;
-//		ResultSet rs = null;
-//		try {
-//			String sql = "SELECT * FROM questions WHERE ID = questionid";
-//			/** PreparedStatement オブジェクトの取得**/
-//			st = con.prepareStatement(sql);
-//			/** SQL 実行 **/
-//			rs = st.executeQuery();
-//			/** select文の結果をArrayListに格納 **/
-//			List<questionsBean> list = new ArrayList<questionsBean>();
-//			while (rs.next()) {
-//				int id = rs.getInt("id");
-//				String question = rs.getString("question");
-//				questionsBean bean = new questionsBean(id, question);
-//				list.add(bean);
-//			}
-//			return list;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			throw new Exception("レコードの取得に失敗しました");
-//		} finally {
-//			try {
-//				if (rs != null) {
-//						rs.close();
-//				}
-//					
-//				if (st != null) {
-//						st.close();
-//				}
-//				close();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				throw new Exception("リソースの開放に失敗しました");
-//
-//			}
-//		}
-//	}
+	
+	
+//	削除
+//	delete from questions where id = questionID;
+	public void delete(String id) throws Exception{
+		try {
+			
+//			String sql = "delete from questions where id = ?";
+		      //ドライバを読み込み、DBに接続
+		      this.setConnection();
 
+		      // Statementオブジェクトの作成,テーブル名の設定
+		      PreparedStatement pstmt = con.prepareStatement("delete from questions where id = ?");
+
+			  pstmt.setString(1,id);
+
+		      //Select文実行
+		      pstmt.executeUpdate();
+
+	    } catch (SQLException e) {
+		      e.printStackTrace();
+		    } catch (ClassNotFoundException e) {
+		      e.printStackTrace();
+		    } finally {
+		      this.close();
+		}
+	}
+
+	
+	
+	
+	
+//全権取得
 	public List<questionsBean> findAll() throws Exception {
 		if (con == null) {
 			setConnection();

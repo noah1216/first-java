@@ -89,12 +89,9 @@ public class testServlet extends HttpServlet {
 				answersBean answer = answerList.get(c);
 				String a_answer = answer.getAnswer();
 				String i_answer = i_answers[c];
-				System.out.println(a_answer);
-				System.out.println(i_answer);
 
 				if (a_answer.equals(i_answer)) {
 					count = count + 1;
-					System.out.println(count);
 				}
 			}
 			request.setAttribute("count", count);
@@ -106,16 +103,14 @@ public class testServlet extends HttpServlet {
 			request.setAttribute("questions", questions);
 
 			int sum = 100 / questions;
-			System.out.println(sum);
 			int total = sum * count;
 			request.setAttribute("total", total);
 
 			//			  日付取得
 			Date d = new Date();
-			System.out.println(d);
 			SimpleDateFormat d1 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			String c1 = d1.format(d); 
-			request.setAttribute("data", c1);
+			request.setAttribute("date", c1);
 			
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック

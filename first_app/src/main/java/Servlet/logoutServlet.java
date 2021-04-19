@@ -36,7 +36,6 @@ public class logoutServlet extends HttpServlet {
 	      session = request.getSession(false);
 
 	      if (session == null) {
-	    	System.out.println("kkk");
 	    	getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 	      }
 	   }

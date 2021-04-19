@@ -70,7 +70,6 @@ public class editConfirmServlet extends HttpServlet {
 
 			String answer = request.getParameter("answer");
 			answersDao answerdao = new answersDao();
-			System.out.println(answer);
 			answerdao.update(id,answer);
 			
 			

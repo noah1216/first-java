@@ -39,7 +39,7 @@
     </ul>
     <div class="test-day">
       <p>
-        <%=request.getAttribute("data") %>
+        <%=request.getAttribute("date") %>
       </p>
     </div>
   </div>

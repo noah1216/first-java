@@ -86,4 +86,50 @@ public class answersDao extends ConnectionDao{
 	      this.close();
 	    }
 	  }
+	
+//	更新
+	public void update(String id, String answer) throws Exception{
+		try {
+			//ドライバを読み込み、DBに接続
+			this.setConnection();
+
+			// Statementオブジェクトの作成,テーブル名の設定
+			PreparedStatement pstmt = con.prepareStatement("UPDATE correct_answers SET answer = ? WHERE questions_id = ?");		  
+			pstmt.setString(1,answer);
+			pstmt.setString(2,id);
+
+			//Select文実行
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			this.close();
+		}
+	}
+	
+//	削除
+	public void delete(String answerId) throws Exception{
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+		      //ドライバを読み込み、DBに接続
+		      this.setConnection();
+			      // Statementオブジェクトの作成,テーブル名の設定
+			      PreparedStatement pstmt = con.prepareStatement("delete FROM correct_answers WHERE questions_id = ?");
+
+				  pstmt.setString(1,answerId);
+
+			      //Select文実行
+			      pstmt.executeUpdate();
+	    } catch (SQLException e) {
+		      e.printStackTrace();
+		    } catch (ClassNotFoundException e) {
+		      e.printStackTrace();
+		    } finally {
+		      this.close();
+		}
+	}
 }

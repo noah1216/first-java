@@ -88,6 +88,7 @@ public class loginServlet extends HttpServlet {
 					// ログイン成功でTop画面へ遷移
 					RequestDispatcher rd = request.getRequestDispatcher("/top.jsp");
 					rd.forward(request, response);
+					return;
 				}	
 			}
 			// DBに一致するものがないので画面戻す
@@ -95,41 +96,5 @@ public class loginServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.forward(request, response);
 		}
-	
-	
-//		
-//		UsersDao dao = null;
-//		try {
-//			dao = new UsersDao();
-//			UsersBean user = dao.find(Integer.parseInt(request.getParameter("userId")));
-//			System.out.println(user.getPassword() + "A");
-//			System.out.println(request.getParameter("password"));
-//			String password = request.getParameter("password");
-//			if (password != null && !password.isEmpty() && user.getPassword() != null && user.getPassword().equals(password)) {
-//				getServletContext().getRequestDispatcher("/top.jsp").forward(request, response);
-//				return;
-//			}
-//			doGet(request, response);
-//		} catch (Exception e) {
-//			// TODO 自動生成された catch ブロック
-//			e.printStackTrace();
-//		}
-//		List<UsersBean> list = new ArrayList<UsersBean>();
-//		try {
-//			list = dao.findAll();
-//		} catch (Exception e) {
-//			// TODO 自動生成された catch ブロック
-//			e.printStackTrace();
-//		}
-//		System.out.println("===== 出力テスト =====");
-//		for (int i = 0; i < list.size(); i++) {
-//		  UsersBean bean = list.get(i);
-//		  if (bean != null) {
-//		    System.out.println(bean.getId());
-//		    System.out.println(bean.getName());
-//		    System.out.println(bean.getPassword());
-//		  }
-//		}
-//		System.out.println("================");
 	}
 }

@@ -16,34 +16,89 @@ public class questionsDao extends ConnectionDao{
 	public questionsDao() throws Exception {
 		setConnection();
 	}
-	
-//	一件の追加
+
+	//	一件の追加
 	public void insertQuestions(questionsBean QuestionsBean) throws Exception {
 
-	    try {
-	      //ドライバを読み込み、DBに接続
-	      this.setConnection();
+		try {
+			//ドライバを読み込み、DBに接続
+			this.setConnection();
 
-	      // Statementオブジェクトの作成,テーブル名の設定
-	      PreparedStatement pstmt = con.prepareStatement("insert into questions(question) values(?)");
+			// Statementオブジェクトの作成,テーブル名の設定
+			PreparedStatement pstmt = con.prepareStatement("insert into questions(question) values(?)");
 
-		pstmt.setString(1,QuestionsBean.getQuestion() );
+			pstmt.setString(1,QuestionsBean.getQuestion() );
 
-	      //Select文実行
-	      pstmt.executeUpdate();
+			//Select文実行
+			pstmt.executeUpdate();
 
 
 
-	    } catch (SQLException e) {
-	      e.printStackTrace();
-	    } catch (ClassNotFoundException e) {
-	      e.printStackTrace();
-	    } finally {
-	      this.close();
-	    }
-	  }
-	
-//	全てデータを取得
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			this.close();
+		}
+	}
+
+
+	//	SELECT　*　FROM　myTable　WHERE　ID = 10;　
+	//	delete from questions where id = questionID;
+
+
+
+	//	削除
+	public void delete(String id) throws Exception{
+		try {
+			//ドライバを読み込み、DBに接続
+			this.setConnection();
+
+			// Statementオブジェクトの作成,テーブル名の設定
+			PreparedStatement pstmt = con.prepareStatement("delete from questions where id = ?");
+
+			pstmt.setString(1,id);
+
+			//Select文実行
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			this.close();
+		}
+	}
+
+
+	//	更新
+	public void updata(String id, String question) throws Exception{
+		try {
+			//ドライバを読み込み、DBに接続
+			this.setConnection();
+
+			// Statementオブジェクトの作成,テーブル名の設定
+			PreparedStatement pstmt = con.prepareStatement("UPDATE questions SET question = ? WHERE id = ?");			  
+			pstmt.setString(1,question);
+			pstmt.setString(2,id);
+
+			//Select文実行
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			this.close();
+		}
+	}
+
+
+
+	//全権取得
 	public List<questionsBean> findAll() throws Exception {
 		if (con == null) {
 			setConnection();
@@ -71,11 +126,11 @@ public class questionsDao extends ConnectionDao{
 		} finally {
 			try {
 				if (rs != null) {
-						rs.close();
+					rs.close();
 				}
-					
+
 				if (st != null) {
-						st.close();
+					st.close();
 				}
 				close();
 			} catch (Exception e) {
@@ -84,6 +139,6 @@ public class questionsDao extends ConnectionDao{
 
 			}
 		}
-	}
 
+	}
 }

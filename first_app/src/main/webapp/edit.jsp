@@ -13,33 +13,42 @@
 </head>
 <body>
 <main>
+<form action="editConfirmServlet">
   <div class="header-box">
     <input type="submit" value="top" class="b-size magin-l10">
     <input type="submit" value="logout" class="b-size magin-l10">
   </div>
-  
-<form action="newServlet" method="post">
+
+  <div class="edit-numder">
+    <label>問題番号:</label>
+    <label class="number" ><%= request.getAttribute("questionId") %></label>
+  </div>
+
   <div class="button-box">
     <div class="buttonsize-box">
       <div class="tyuou">
         <div class="question-box">
           <label class="valign">問題:</label>
-          <textarea class="text-size text-size-h250" rows="10" cols="60" name="question" readonly><%=request.getAttribute("question")%></textarea>
+          <textarea class="text-size text-size-h250" rows="10" cols="60" name="question" ><%=request.getAttribute("question")%></textarea>
           <p>
             <label>答え:</label>
-            <input type="text" name="answer" class="text-size" value="<%=request.getAttribute("answer")%>" name="answer" readonly >
+            <input type="text" name="answer" value="<%= request.getAttribute("answer") %>" class="text-size84">
+            <input type="button" value="削除" >
           </p>
         </div>
       </div>
       <div class="center">
-        <input type="submit" value="登録" >
-          <a href="registerServlet">
-	        <button type="button" >戻る</button>
-	      </a>
+        <a href="listServlet">
+	      <button type="button">戻る</button>
+	    </a>
+        <input type="submit" value="確認" >
+        <input type="button" value="追加" >
+        <input type="hidden" name="answerId" value="<%= request.getAttribute("answerId") %>">
+        <input type="hidden" name="questionId" value="<%= request.getAttribute("questionId") %>"> 
       </div>
     </div>
   </div>
-</form>
+  </form>
 </main>
 </body>
 </html>

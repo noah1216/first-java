@@ -7,19 +7,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import Bean.historiesBean;
+import dao.historiesDao;
 
 /**
- * Servlet implementation class logoutServlet
+ * Servlet implementation class testCreateServlet
  */
-@WebServlet("/logoutServlet")
-public class logoutServlet extends HttpServlet {
+@WebServlet("/testCreateServlet")
+public class testCreateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public logoutServlet() {
+    public testCreateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,16 +31,7 @@ public class logoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	    HttpSession session = request.getSession(false);
-
-	    if (session != null){
-	      session.invalidate();
-	      session = request.getSession(false);
-
-	      if (session == null) {
-	    	getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-	      }
-	   }
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -46,7 +39,22 @@ public class logoutServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 
+		historiesBean history = new historiesBean();
+		int user_id = Integer.parseInt(request.getParameter("user_id"));
+		int point = Integer.parseInt(request.getParameter("point"));
+		history.setUsersId(user_id);
+		history.setPoint(point);
+		//1件追加
+		try {
+			historiesDao historiesDAO = new historiesDao();
+			historiesDAO.insertHistories(history);
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		getServletContext().getRequestDispatcher("/top.jsp").forward(request, response);
 	}
 
 }

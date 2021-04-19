@@ -27,16 +27,23 @@
         <a href="listServlet">
 	        <button type="button" class="button-size1">問題と答えを確認・登録する　＞</button>
 	      </a>
-      </div>
+      </div>   
+
+      <div class="top-center">   
+	      <form action="testServlet">	  
+	  <% String name = (String)session.getAttribute("login_name"); %>
+      <% int user_id = (int)session.getAttribute("login_id"); %>
+	       <input type="hidden" name="user_name" value="<%= name %>">
+	       <input type="hidden" name="user_id" value="<%= user_id %>">
+		        <button type="submit" class="button-size1">テストをする　＞</button>
+		  </form>
+	  </div>
       <div class="top-center">
-          <a href="listServlet">
-	        <button type="button" class="button-size1">テストをする　＞</button>
-	      </a>
-      </div>
-      <div class="top-center">
-          <a href="listServlet">
-	        <button type="button" class="button-size1">過去の採点結果を見る　＞</button>
-	      </a>
+	      <form action="historyServlet">
+	       <input type="hidden" name="user_name" value="<%= name %>">
+	       <input type="hidden" name="user_id" value="<%= user_id %>">
+		   <button type="submit" class="button-size1">過去の採点結果を見る　＞</button>
+		   </form>
       </div>
     </div>
   </div>

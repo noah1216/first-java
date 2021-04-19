@@ -160,3 +160,12 @@ p{
   font-size: 30px;
   text-align: center;
 }
+
+.text_box1 h2{
+  text-align: center;
+}
+
+.table{
+  display: flex;
+  justify-content: center;
+}

@@ -88,6 +88,7 @@ public class loginServlet extends HttpServlet {
 					// ログイン成功でTop画面へ遷移
 					RequestDispatcher rd = request.getRequestDispatcher("/top.jsp");
 					rd.forward(request, response);
+					return;
 				}	
 			}
 			// DBに一致するものがないので画面戻す

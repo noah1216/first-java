@@ -33,14 +33,15 @@
   </div>
 
   <% 
+ 
 List<questionsBean> questionList = (List<questionsBean>)request.getAttribute("list");
+if (questionList != null) {
 for (int i =0; i < questionList.size(); i++) {
     questionsBean question = questionList.get(i);
     if (question == null) {
         continue;    		
     }
 %>
-<form action="deleteSarvlet">
  <div class="button-box">
     <div class="buttonsize-box">
       <div class="tyuou">
@@ -48,7 +49,7 @@ for (int i =0; i < questionList.size(); i++) {
           <p>
             <label>問題:</label>
             <label><%= question.getId() %></label>
-            <input type="text" name="question" class="text-size" value="<%= question.getQuestion() %>">
+            <input type="text" name="question" class="text-size" value="<%= question.getQuestion() %>" readonly>
           </p>
            <% 
 			List<answersBean> answerList = (List<answersBean>)request.getAttribute("list2");
@@ -62,21 +63,31 @@ for (int i =0; i < questionList.size(); i++) {
 			%>
           <p>
             <label>答え1:</label>
-            <input type="text" name="answer" value="<%= answer.getAnswer() %>" class="text-size">
+            <input type="hidden" name="answerId" value="<%= answer.getQuestionsId() %>"> 
+            <input type="text" name="answer" value="<%= answer.getAnswer() %>" class="text-size" readonly>
           </p>
+          <form action="deleteSarvlet">
+           <input type="hidden" name="questionId" value="<%= question.getId() %>"> 
+           <input type="hidden" name="answerId" value="<%= answer.getQuestionsId() %>"> 
+           <input type="hidden" name="answer" value="<%= answer.getAnswer() %>">
+           <input type="hidden" name="question" value="<%= question.getQuestion() %>"> 
+	       <button type="submit">削除</button>
+	    </form>
+        <form action="editServlet">
+           <input type="hidden" name="questionId" value="<%= question.getId() %>"> 
+           <input type="hidden" name="answerId" value="<%= answer.getQuestionsId() %>"> 
+           <input type="hidden" name="answer" value="<%= answer.getAnswer() %>">
+           <input type="hidden" name="question" value="<%= question.getQuestion() %>"> 
+	        <button type="submit">編集</button>
+	    </form>
           <% } %>
         <div>
-           <input type="hidden" name="questionId" value="<%= question.getId() %>"> 
-	       <button type="submit">削除</button>
-          <a href="deleteSarvlet">
-	        <button type="button">編集</button>
-	      </a>
+
         </div>
       </div>
     </div>
   </div>
-  </form>
-<% } %>
+<% }} %>
 
 
  

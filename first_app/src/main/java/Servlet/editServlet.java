@@ -9,20 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.answersDao;
-import dao.questionsDao;
-
 /**
- * Servlet implementation class deleteSarvlet
+ * Servlet implementation class editServlet
  */
-@WebServlet("/deleteSarvlet")
-public class deleteSarvlet extends HttpServlet {
+@WebServlet("/editServlet")
+public class editServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public deleteSarvlet() {
+    public editServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,28 +36,10 @@ public class deleteSarvlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stu
-		try {
-			request.setCharacterEncoding("UTF-8");
-			String id = request.getParameter("questionId");
-			questionsDao questiondao = new questionsDao();
-			questiondao.delete(id);
-
-			String answerId = request.getParameter("answerId");
-			answersDao answerdao = new answersDao();
-			answerdao.delete(answerId);
-			
-			
-			  RequestDispatcher rd = request.getRequestDispatcher("listServlet");
-			  rd.forward(request, response);
-		}catch(Exception e) {
-			  RequestDispatcher rd = request.getRequestDispatcher("top.jsp");
-			  rd.forward(request, response);
-			}
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 	
-	
-//確認画面
 	private void common(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
@@ -80,7 +59,7 @@ public class deleteSarvlet extends HttpServlet {
 			  String questionId = (String)request.getParameter("questionId");
 			  request.setAttribute("questionId",questionId);
 			  
-			  RequestDispatcher rd = request.getRequestDispatcher("delete.jsp");
+			  RequestDispatcher rd = request.getRequestDispatcher("edit.jsp");
 			  rd.forward(request, response);
 			} catch(Exception e) {
 			  RequestDispatcher rd = request.getRequestDispatcher("top.jsp");

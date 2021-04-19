@@ -3,6 +3,7 @@ package Servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -47,6 +48,7 @@ public class testServlet extends HttpServlet {
 
 			questionsDao dao = new questionsDao();
 			List<questionsBean> list = dao.findAll();
+			Collections.shuffle(list);
 			request.setAttribute("list", list);
 
 			RequestDispatcher rd = request.getRequestDispatcher("test.jsp");
